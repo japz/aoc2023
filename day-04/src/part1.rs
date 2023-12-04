@@ -46,7 +46,7 @@ fn parse_number_list(input: &str) -> IResult<&str, Vec<u32>> {
 // Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
 fn parse_card(input: &str) -> IResult<&str, Card> {
     let (input, (card_number, (winning, mine))) = separated_pair(
-        preceded(tag("Card"), preceded(multispace1, digit1)), delimited(multispace0,tag(":"), multispace0),
+        preceded(tag("Card"), preceded(multispace1, digit1)), delimited(multispace0, tag(":"), multispace0),
         separated_pair(parse_number_list, delimited(multispace0, tag("|"), multispace0), parse_number_list)
     )(input)?;
     let number = card_number.parse::<u32>().unwrap();
